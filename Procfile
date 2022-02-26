@@ -1,1 +1,1 @@
-web: gunicorn WoM.wsgi
+web: gunicorn WoM.WoM.wsgi
