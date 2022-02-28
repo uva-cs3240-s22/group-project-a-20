@@ -7,23 +7,21 @@ def home(request):
     context = {
         "name" : name,
         }
-    template = loader.get_template('recipes/home.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipes/home.html', context)
 
 #temp pre-login
-def pre(request):
+def login(request):
     name = "you are not logged in"
     context = {
         "name" : name,
         }
-    template = loader.get_template('recipes/login.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipes/login.html', context)
 
 #temp post-login
-def post(request):
+#I don't fully know how the api works so imma include this as well
+def loggedIn(request):
     name = "you are not logged in"
     context = {
         "name" : name,
         }
-    template = loader.get_template('recipes/loggedin.html')
-    return HttpResponse(template.render(context, request))
+    return render(request, 'recipes/loggedin.html', context)
