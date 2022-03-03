@@ -7,5 +7,5 @@ urlpatterns = [
     path('login', views.login, name = 'login'),
     path('loggedIn', views.loggedIn, name = 'loggedIn'),
     # for account authentication
-    path('accounts/', include('allauths.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
