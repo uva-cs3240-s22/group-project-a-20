@@ -46,6 +46,7 @@ def get_recipe(request):
 
 # Brings you to the list of recipes, ordered by date submitted
 class RecipeListView(generic.ListView):
+    model = Recipe
     template_name = 'recipes/recipelist.html'
     context_object_name = 'recipes_list'
 
