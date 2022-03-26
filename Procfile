@@ -1,3 +1,2 @@
-release: python manage.py makemigrations
-release: python manage.py migrate
+release: ./release.sh
 web: gunicorn WoM.wsgi
