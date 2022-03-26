@@ -1,6 +1,6 @@
 {% if recipes_list %}
     <ul class="list-group">
-        {% for recipe in recipes_list %}
+        {% for recipes in recipes_list %}
             <li class="list-group-item"><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.recipe_title }}</a></li>
         {% endfor %}
     </ul>
