@@ -1,2 +1,2 @@
-python manage.py makemigrations
+python manage.py makemigrations recipes
 python manage.py migrate
