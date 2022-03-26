@@ -1,2 +1,2 @@
-release: python manage.py migrate --run-syncdb
+release: bash release.sh
 web: gunicorn WoM.wsgi
