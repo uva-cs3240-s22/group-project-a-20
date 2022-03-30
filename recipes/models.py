@@ -4,5 +4,6 @@ from django.db import models
 
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=100)
+    recipe_ingredients = models.ArrayField(base_field=models.CharField(max_length=100))
     recipe_instructions = models.CharField(max_length=5000)
     pub_date = models.DateTimeField(auto_now_add=True)
