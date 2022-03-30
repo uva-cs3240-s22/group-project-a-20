@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import django_heroku
 import os
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,21 +84,29 @@ WSGI_APPLICATION = 'WoM.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': 'dca9sq0qn2k9tk',
-
-        'USER': 'ecuwtgcxhrzjsd',
-
-        'PASSWORD': 'a62989db6cb43d43a4081f101c3b9106977a678fde73d4a7ee38a70101bd3cbc',
-
-        'HOST': 'ec2-52-3-60-53.compute-1.amazonaws.com',
-
-        'PORT': '5432',
+if 'test' in sys.argv:
+    DATABASES = {
+        'default':{
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+            'NAME': 'dca9sq0qn2k9tk',
+
+            'USER': 'ecuwtgcxhrzjsd',
+
+            'PASSWORD': 'a62989db6cb43d43a4081f101c3b9106977a678fde73d4a7ee38a70101bd3cbc',
+
+            'HOST': 'ec2-52-3-60-53.compute-1.amazonaws.com',
+
+            'PORT': '5432',
+        }      
+    }
 
 
 # Password validation
