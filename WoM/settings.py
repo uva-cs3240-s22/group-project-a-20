@@ -85,8 +85,17 @@ WSGI_APPLICATION = 'WoM.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'dca9sq0qn2k9tk',
+
+        'USER': 'ecuwtgcxhrzjsd',
+
+        'PASSWORD': 'a62989db6cb43d43a4081f101c3b9106977a678fde73d4a7ee38a70101bd3cbc',
+
+        'HOST': 'ec2-52-3-60-53.compute-1.amazonaws.com',
+
+        'PORT': '5432',
     }
 }
 
@@ -164,7 +173,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 if 'HEROKU' in os.environ:
     import django_heroku
