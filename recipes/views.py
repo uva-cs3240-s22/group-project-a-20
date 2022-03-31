@@ -3,33 +3,30 @@ from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .forms import RecipeForm
 from .models import Recipe
 
 def home(request):
-    name = "you are not logged in"
-    context = {
-        "name" : name,
-        }
-    return render(request, 'recipes/home.html', context)
+    # name = "you are not logged in"
+    # context = {
+    #     "name" : name,
+    #     }
+    # return render(request, 'recipes/home.html', context)
+    return render(request, 'recipes/index.html')
 
-#temp pre-login
-def login(request):
-    name = "you are not logged in"
-    context = {
-        "name" : name,
-        }
-    return render(request, 'recipes/login.html', context)
+@login_required
+def get_profile(request):
+    return render(request, 'recipes/profile.html')
 
-#temp post-login
-#I don't fully know how the api works so imma include this as well
-def loggedIn(request):
-    name = "you are not logged in"
-    context = {
-        "name" : name,
-        }
-    return render(request, 'recipes/loggedin.html', context)
+# class ProfileView(View):
+#     profile = None
+#
+#     def
+
+
+
 
 # Handles recipe submission. By default it takes you to the form to submit a recipe. 
 # When you submit a recipe, it can handle the data and redirect to the new recipe page
