@@ -9,7 +9,7 @@
     {% if user.is_authenticated %}
       <p>Welcome, {{ user.username }}!</p>
         <a href="{% url 'recipes:profile' %}">View Profile</a>
-    <a href=""
+    <a href=""></a>
     {% else %}
         <h2>Welcome to Word of Mouth! Please login to continue.</h2>
         <a href="{% provider_login_url 'google' %}">Login With Google</a>

@@ -9,8 +9,16 @@
 {% block content %}
     <div class="row my-3 p-3">
         <h1>This is the profile page for {{user.username}}</h1>
+        <p> Gender: {{user.gender}}</p>
+        <p> Birthday: {{user.birthday}} </p>
+        <p> Bio: {{user.bio}}</p>
+        <p> Created: {{user.created_at}}</p>
+        <p> Last edited: {{user.updated_at}} </p>
     </div>
 
+    <form action="{% url 'recipes:editprofile' %}">
+        <input type="submit" value="Edit Profile" />
+    </form>
 
 {% endblock content %}
 </body>

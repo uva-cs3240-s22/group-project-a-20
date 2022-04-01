@@ -8,6 +8,7 @@ urlpatterns = [
     # path('login', views.login, name = 'login'),
     # path('loggedIn', views.loggedIn, name = 'loggedIn'),
     path('profile/', views.get_profile, name = 'profile'),
+    path('profile/edit', views.edit_profile, name = "editprofile"),
     path('recipes/form/', views.get_recipe, name = 'recipeform'),
     path('recipes/list/', views.RecipeListView.as_view(), name = 'recipelist'),
     path('recipes/<int:pk>/', views.RecipeView.as_view(), name = 'recipe'),

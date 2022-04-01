@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .forms import RecipeForm
-from .models import Recipe
+from .models import Recipe, Profile
 
 def home(request):
     # name = "you are not logged in"
@@ -16,9 +17,18 @@ def home(request):
     # return render(request, 'recipes/home.html', context)
     return render(request, 'recipes/index.html')
 
+#for personal profile, so editable
 @login_required
 def get_profile(request):
     return render(request, 'recipes/profile.html')
+
+@login_required
+def edit_profile(request):
+    #user = get_object_or_404(Profile)
+    #if(request.POST['gender']):
+    #    user.gender = request.POST['gender']
+
+    return render(request, 'recipes/editprofile.html')
 
 # class ProfileView(View):
 #     profile = None

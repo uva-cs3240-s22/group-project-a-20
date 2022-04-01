@@ -1,0 +1,15 @@
+<h1> edit page </h1>
+<form action="{% url 'recipes:profile' %}" method="post">
+    {% csrf_token %}
+    <!-- <label for="pic"> Profile Picture: </label>
+    <input type="image" id="pic" name="pic"><br><br>
+    For picture once we get it-->
+    <p> test: {{user.username}} </p>
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" name="gender"><br><br>
+    <label for="bday">Birthday: </label>
+    <input type="date" id="bday" name="bday"><br><br>
+    <label for="bio">Bio:</label>
+    <input type="text" id="bio" name="bio"><br><br>
+    <input type="submit" value="Submit">
+    </form>
