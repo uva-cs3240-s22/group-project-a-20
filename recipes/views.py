@@ -18,9 +18,13 @@ def home(request):
     return render(request, 'recipes/index.html')
 
 #for personal profile, so editable
-@login_required
-def get_profile(request):
-    return render(request, 'recipes/profile.html')
+class profile_detail(generic.DetailView):
+    model = Profile
+    template_name = 'recipes/profile.html'
+
+#def get_profile(request, key):
+    #user = get_object_or_404(Profile, pk = key)
+    #return render(request, 'recipes/profile.html')
 
 @login_required
 def edit_profile(request):
