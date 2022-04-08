@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 
 from .forms import RecipeForm
@@ -26,13 +27,17 @@ class profile_detail(generic.DetailView):
     #user = get_object_or_404(Profile, pk = key)
     #return render(request, 'recipes/profile.html')
 
-@login_required
-def edit_profile(request):
+@method_decorator(login_required, name='dispatch')
+class profile_edit(generic.DetailView):
+    model = Profile
+    template_name = 'recipes/editprofile.html'
+
+#def edit_profile(request):
     #user = get_object_or_404(Profile)
     #if(request.POST['gender']):
     #    user.gender = request.POST['gender']
 
-    return render(request, 'recipes/editprofile.html')
+    #return render(request, 'recipes/editprofile.html')
 
 # class ProfileView(View):
 #     profile = None

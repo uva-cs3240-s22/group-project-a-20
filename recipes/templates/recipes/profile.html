@@ -12,11 +12,11 @@
         <p> Gender: {{profile.gender}}</p>
         <p> Birthday: {{profile.birthday}} </p>
         <p> Bio: {{profile.bio}}</p>
-        <p> Created: {{profile.user.created_at}}</p>
-        <p> Last edited: {{profile.user.updated_at}} </p>
+        <p> Created: {{profile.created_at}}</p>
+        <p> Last edited: {{profile.updated_at}} </p>
     </div>
 
-    <form action="{% url 'recipes:editprofile' %}">
+    <form action="{% url 'recipes:editprofile' profile.id %}">
         <input type="submit" value="Edit Profile" />
     </form>
 

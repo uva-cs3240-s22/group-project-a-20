@@ -1,10 +1,11 @@
 <h1> edit page </h1>
-<form action="{% url 'recipes:profile' %}" method="post">
+{% if user.name != profile.user.name %}
+<form action="{% url 'recipes:profile' profile.id %}" method="post">
     {% csrf_token %}
     <!-- <label for="pic"> Profile Picture: </label>
     <input type="image" id="pic" name="pic"><br><br>
     For picture once we get it-->
-    <p> test: {{user.username}} </p>
+    <p> For {{profile.user.username}} </p>
     <label for="gender">Gender:</label>
     <input type="text" id="gender" name="gender"><br><br>
     <label for="bday">Birthday: </label>
@@ -13,3 +14,6 @@
     <input type="text" id="bio" name="bio"><br><br>
     <input type="submit" value="Submit">
     </form>
+{% else %}
+<p> This is not your profile to edit. <a href = "{% url 'recipes:profile' profile.id %}"> Return to this profile </a></p>
+{% endif %}
