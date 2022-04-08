@@ -4,4 +4,4 @@ from recipes.models import Recipe
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['recipe_title', 'recipe_instructions']
+        fields = ['recipe_title', 'recipe_instructions', 'img']
