@@ -5,7 +5,7 @@ from django.template import loader
 from django.urls import reverse
 
 from .forms import RecipeForm
-from .models import Recipe
+from .models import EditRecipe, Recipe
 
 def home(request):
     name = "you are not logged in"
@@ -56,3 +56,8 @@ class RecipeListView(generic.ListView):
 class RecipeView(generic.DetailView):
     model = Recipe
     template_name = 'recipes/recipe.html'
+
+class EditedRecipesList(generic.ListView):
+    model = EditRecipe
+    template_name = 'recipes/editedrecipelist.html'
+

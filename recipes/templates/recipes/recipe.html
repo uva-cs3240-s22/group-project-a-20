@@ -2,3 +2,8 @@
 <p>
     {{ recipe.recipe_instructions}}
 </p>
+<p>
+    {% for editedrecipe in recipe.editedrecipe_set.all %}
+    <label for="editedrecipe{{ forloop.counter }}">{{ editedrecipe.editedrecipe_title }}</label><br>
+    {% endfor %}
+</p>

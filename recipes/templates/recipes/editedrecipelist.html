@@ -1,0 +1,10 @@
+{% if editedrecipes_list %}
+<ul class="list-group">
+    {% for recipe in recipes_list %}
+    <li class="list-group-item"><a href="{% url 'recipes:editedrecipe' editedrecipe.id %}">{{ editedrecipe.recipe_title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>Waiting for recipes.</p>
+{% endif %}
