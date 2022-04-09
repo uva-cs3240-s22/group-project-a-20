@@ -21,4 +21,8 @@
 
 <img src="{% static ''%}{{ recipe.img }}" class="recipe-img">
 
+<p>
+    <a href = "{% url 'recipes:forkrecipe' recipe.id %}">fork recipe</a>
+</p>
+
 {% endblock %}

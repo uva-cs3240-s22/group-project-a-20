@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -44,18 +44,23 @@ def get_recipe(request):
 
     return render(request, 'recipes/recipeform.html', {'form': form})
 
-'''
-def fork_recipe(request):
+def fork_recipe(request, pk):
+    parent = get_object_or_404(Recipe, pk=pk)
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         if form.is_valid():
             recipe = form.save()
+            recipe.parent = pk
+            recipe.save(updated_fields=['parent'])
             return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))
     else:
-        form = RecipeForm(initial={'recipe_title': request})
-
-    return
-'''
+        form = RecipeForm(
+            initial={'recipe_title': parent.recipe_title, 
+            'recipe_ingredients': parent.recipe_ingredients, 
+            'recipe_instructions': parent.recipe_instructions, 
+            'img': parent.img}
+            )
+    return render(request, 'recipes/recipeform.html', {'form': form})
 
 '''class RecipeForkCreateView(generic.edit.CreateView):
     model = Recipe
