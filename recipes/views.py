@@ -35,7 +35,7 @@ def loggedIn(request):
 # When you submit a recipe, it can handle the data and redirect to the new recipe page
 def get_recipe(request):
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipe = form.save()
             return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))

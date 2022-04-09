@@ -1,5 +1,18 @@
-<form action="{% url 'recipes:recipeform' %}" method="post">
+{% extends "recipes/base.html" %}
+
+{% load static %}
+
+{% block description %}Add a recipe{% endblock %}
+{% block title %}Add a recipe{% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'recipes:recipeform' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
+
+
+{% endblock %}

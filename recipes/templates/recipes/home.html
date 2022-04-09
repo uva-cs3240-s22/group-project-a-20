@@ -1,3 +1,12 @@
+{% extends "recipes/base.html" %}
+
+{% load static %}
+
+{% block description %}Welcome page{% endblock %}
+{% block title %}Welcome to Word of Mouth{% endblock %}
+
+{% block content %}
+
 <h1> This is the Home page</h1>
 <p> look theres html stuff, hello {{name}}</p>
 <a href = "../accounts/google/login/"> log in </a> </br>

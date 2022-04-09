@@ -1,3 +1,12 @@
+{% extends "recipes/base.html" %}
+
+{% load static %}
+
+{% block description %}List of Recipes{% endblock %}
+{% block title %}List of Recipes{% endblock %}
+
+{% block content %}
+
 {% if recipes_list %}
     <ul class="list-group">
         {% for recipe in recipes_list %}
@@ -8,3 +17,5 @@
 {% else %}
     <p>Waiting for recipes.</p>
 {% endif %}
+
+{% endblock %}
