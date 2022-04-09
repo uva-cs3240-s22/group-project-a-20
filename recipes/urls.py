@@ -10,6 +10,7 @@ urlpatterns = [
     path('recipes/form/', views.get_recipe, name = 'recipeform'),
     path('recipes/list/', views.RecipeListView.as_view(), name = 'recipelist'),
     path('recipes/<int:pk>/', views.RecipeView.as_view(), name = 'recipe'),
+    #path('recipes/fork/<int:pk>/',),
     # for account authentication
     path('accounts/', include('allauth.urls')),
 ]

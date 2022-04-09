@@ -8,3 +8,9 @@ class Recipe(models.Model):
     recipe_ingredients = ArrayField(base_field=models.CharField(max_length=100), null=True)
     recipe_instructions = models.CharField(max_length=5000)
     pub_date = models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+    )

@@ -44,6 +44,31 @@ def get_recipe(request):
 
     return render(request, 'recipes/recipeform.html', {'form': form})
 
+'''
+def fork_recipe(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            recipe = form.save()
+            return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))
+    else:
+        form = RecipeForm(initial={'recipe_title': request})
+
+    return
+'''
+
+'''class RecipeForkCreateView(generic.edit.CreateView):
+    model = Recipe
+    form_class=RecipeForm
+
+    def get_initial(self, *args, **kwargs):
+        initial = super(RecipeForkCreateView, self).get_initial(**kwargs)
+        initial['recipe_title'] = self.request.recipe_title
+        initial['recipe_ingredients'] = self.request.recipe_ingredients
+        initial['recipe_instructions'] = self.request.recipe_instructions
+        return initial
+'''
+
 # Brings you to the list of recipes, ordered by date submitted
 class RecipeListView(generic.ListView):
     model = Recipe
