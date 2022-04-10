@@ -61,9 +61,9 @@ def fork_recipe(request, pk):
             {'recipe_title': parent.recipe_title, 
             'recipe_ingredients': parent.recipe_ingredients, 
             'recipe_instructions': parent.recipe_instructions, 
-            'img': parent.img},
+            },
             initial={'img': parent.img}
-            )
+        )
     return render(request, 'recipes/recipeform.html', {'form': form, 'recipe': parent})
 
 '''class RecipeForkCreateView(generic.edit.CreateView):
