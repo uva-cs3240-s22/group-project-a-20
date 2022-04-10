@@ -10,7 +10,10 @@ from .forms import RecipeForm
 from .models import Recipe
 
 def home(request):
-    return render(request, 'recipes/home.html')
+    # recipe_list = Recipe.objects.values_list('recipe_title', 'img', 'pk')[:3]
+
+    recipe_list = Recipe.objects.exclude(img__exact='')[:3]
+    return render(request, 'recipes/home.html', {'recipe_list': recipe_list})
 
 #temp pre-login
 # def login(request):
