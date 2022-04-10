@@ -96,13 +96,13 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-            'NAME': 'dca9sq0qn2k9tk',
+            'NAME': 'dfa3ha3uli5kk1',
 
-            'USER': 'ecuwtgcxhrzjsd',
+            'USER': 'uowmeimdbpbknd',
 
-            'PASSWORD': 'a62989db6cb43d43a4081f101c3b9106977a678fde73d4a7ee38a70101bd3cbc',
+            'PASSWORD': '6fe8332e57694b88a3a08a54f33ebb5d84bbdfa16bc352aec7324f769fb65dfb',
 
-            'HOST': 'ec2-52-3-60-53.compute-1.amazonaws.com',
+            'HOST': 'ec2-34-194-73-236.compute-1.amazonaws.com',
 
             'PORT': '5432',
         }      
