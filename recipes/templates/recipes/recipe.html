@@ -38,7 +38,7 @@
     <!--        And forks go here. -->
     <div>
         {% for element in recipe.recipe_set.all %}
-            {{ element.recipe_title }}
+            <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a>
         {% endfor %}
     </div>
 </div>
