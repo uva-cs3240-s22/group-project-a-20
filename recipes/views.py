@@ -50,17 +50,21 @@ def fork_recipe(request, pk):
         form = RecipeForm(request.POST)
         if form.is_valid():
             recipe = form.save()
-            recipe.parent = pk
-            recipe.save(updated_fields=['parent'])
+            recipe.parent = parent
+            recipe.save(update_fields=['parent'])
+            if (recipe.img == None):
+                recipe.img = parent.img
+                recipe.save(update_fields=['img'])
             return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))
     else:
         form = RecipeForm(
-            initial={'recipe_title': parent.recipe_title, 
+            {'recipe_title': parent.recipe_title, 
             'recipe_ingredients': parent.recipe_ingredients, 
             'recipe_instructions': parent.recipe_instructions, 
-            'img': parent.img}
+            'img': parent.img},
+            initial={'img': parent.img}
             )
-    return render(request, 'recipes/recipeform.html', {'form': form})
+    return render(request, 'recipes/recipeform.html', {'form': form, 'recipe': parent})
 
 '''class RecipeForkCreateView(generic.edit.CreateView):
     model = Recipe

@@ -18,24 +18,29 @@
         <div class="col-4">
             {% if recipe.img %}
             <img src="{% static ''%}{{ recipe.img }}" class="recipe-img">
-            {% else %}
-            <p class="recipe-img">No image</p>
             {% endif %}
         </div>
 
     <!--        Block with the ingredients-->
         <div class="col-8 ingredients">
             <p>
-                {{ recipe.recipe_instructions}} <br>
+                {% for element in recipe.recipe_ingredients %}
+                {{ element }} <br>
+                {% endfor %}
             </p>
         </div>
     </div>
     <hr>
     <!--        Ideally block with all the instructions goes here.-->
     <div class="row instructions">
-
+        {{ recipe.recipe_instructions }}
     </div>
-
+    <!--        And forks go here. -->
+    <div>
+        {% for element in recipe.recipe_set.all %}
+            {{ element.recipe_title }}
+        {% endfor %}
+    </div>
 </div>
 
 <p>

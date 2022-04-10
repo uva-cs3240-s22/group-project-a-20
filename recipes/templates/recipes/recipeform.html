@@ -15,7 +15,11 @@
 
     <div class="row">
         <div class="col-6 recipe-submission">
-            <form action="{% url 'recipes:recipeform' %}" method="post" enctype="multipart/form-data">
+            {% if form.is_bound %}
+                <form action="{% url 'recipes:forkrecipe' recipe.id %}" method="post" enctype="multipart/form-data">
+            {% else %}
+                <form action="{% url 'recipes:recipeform' %}" method="post" enctype="multipart/form-data">
+            {% endif %}
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="Submit">
