@@ -21,7 +21,7 @@
     <div class="row">
 
     {% for item in recipe_list %}
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="card">
                 <a href="{% url 'recipes:recipe' item.pk %}">
                 <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
