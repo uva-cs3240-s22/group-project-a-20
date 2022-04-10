@@ -13,7 +13,28 @@
         <h1>Word of Mouth</h1>
         <p>Where you can get the latest bites.</p>
     </div>
+</div>
 
+    <br>
+<div class="container main">
+    <h2>Top Recipes of the Week</h2>
+    <div class="row">
+
+    {% for item in recipe_list %}
+        <div class="col-4">
+            <div class="card">
+                <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.recipe_title }}</h5>
+                    <p class="card-text">
+                        <a href="{% url 'recipes:recipe' item.pk %}">Get this recipe!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
 </div>
 
 
