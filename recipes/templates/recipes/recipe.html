@@ -36,9 +36,10 @@
         {{ recipe.recipe_instructions }}
     </div>
     <!--        And forks go here. -->
-    <div>
+    <div class='col-12'>
+        Forks:<br>
         {% for element in recipe.recipe_set.all %}
-            <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a>
+            <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a><br>
         {% endfor %}
     </div>
 </div>
