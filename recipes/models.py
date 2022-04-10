@@ -14,7 +14,7 @@ class Recipe(models.Model):
         blank=True,
         null=True,
     )
-    user = models.ForeignKey('socialaccount.SocialAccount', on_delete=models.CASCADE, )
+    user = models.ForeignKey('socialaccount.SocialAccount', on_delete=models.CASCADE, null=True)
     img = models.ImageField(upload_to='recipe_images/', blank=True, null=True)
 
     def __str__(self):
