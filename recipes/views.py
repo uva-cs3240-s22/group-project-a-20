@@ -50,21 +50,20 @@ def get_recipe(request):
 def fork_recipe(request, pk):
     parent = get_object_or_404(Recipe, pk=pk)
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.parent = parent
             recipe.save()
-            '''if (recipe.img == None):
+            if (recipe.img == None):
                 recipe.img = parent.img
-                recipe.save(update_fields=['img'])'''
+                recipe.save(update_fields=['img'])
             return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))
     else:
         form = RecipeForm(
             {'recipe_title': parent.recipe_title, 
             'recipe_ingredients': parent.recipe_ingredients, 
-            'recipe_instructions': parent.recipe_instructions, 
-            'img': parent.img},
+            'recipe_instructions': parent.recipe_instructions, },
             initial={'img': parent.img}
             )
     return render(request, 'recipes/recipeform.html', {'form': form, 'recipe': parent})
