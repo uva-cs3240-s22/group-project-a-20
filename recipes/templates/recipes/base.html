@@ -56,10 +56,19 @@
             </ul>
 
 <!--            LOGIN SECTION OF NAVBAR-->
-            <ul class="navbar-nav nav nav-item navbar-right">
-                <li class="vertical-center nav-link active">{{name}}</li>
-                <li><a class="nav-link" href={% url 'recipes:login' %}><button type="button" class="btn btn-primary">Login</button></a></li>
-            </ul>
+
+            {% load socialaccount %}
+            {% if user.is_authenticated %}
+                <ul class="navbar-nav nav nav-item navbar-right">
+                    <li class="vertical-center nav-link active">{{user.username}}</li>
+                    <li><a class="nav-link" href={% provider_login_url 'google' %}><button type="button" class="btn btn-primary" disabled>Logged In</button></a></li>
+                </ul>
+            {% else %}
+                <ul class="navbar-nav nav nav-item navbar-right">
+                    <li class="vertical-center nav-link active">You are not logged in</li>
+                    <li><a class="nav-link" href={% provider_login_url 'google' %}><button type="button" class="btn btn-primary">Login With Google</button></a></li>
+                </ul>
+            {% endif %}
 <!--            END LOGIN SECTION OF NAVBAR-->
 
         </div>
