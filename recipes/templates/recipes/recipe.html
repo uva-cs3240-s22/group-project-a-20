@@ -11,6 +11,13 @@
 <div class="container main bg-light">
     <div class="row banner">
         <h1>{{ recipe.recipe_title }}</h1>
+        {% if recipe.parent %}
+            <h5>Forked from <a href="{% url 'recipes:recipe' recipe.parent.id %}">{{ recipe.parent.recipe_title }}</a></h5>
+        {% endif %}
+
+    </div>
+    <div class="row">
+
     </div>
 
     <div class="row">
@@ -23,29 +30,37 @@
 
     <!--        Block with the ingredients-->
         <div class="col-8 ingredients">
-            <p>
+            <h3>Ingredients</h3>
+            <ul>
                 {% for element in recipe.recipe_ingredients %}
-                {{ element }} <br>
+                <li>{{ element }} </li>
                 {% endfor %}
-            </p>
+            </ul>
         </div>
     </div>
     <hr>
+
     <!--        Ideally block with all the instructions goes here.-->
     <div class="row instructions">
-        {{ recipe.recipe_instructions }}
+        <h3>Instructions</h3>
+        <ol>
+            <li>{{ recipe.recipe_instructions }}</li>
+        </ol>
     </div>
+    <hr>
+
     <!--        And forks go here. -->
-    <div class='col-12'>
-        Forks:<br>
-        {% for element in recipe.recipe_set.all %}
-            <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a><br>
-        {% endfor %}
+    <div class="row list-of-forks">
+        <a href = "{% url 'recipes:forkrecipe' recipe.id %}">Fork recipe</a>
+        {% if recipe.recipe_set.all %}
+            Forks:<br>
+            {% for element in recipe.recipe_set.all %}
+                <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a><br>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 
-<p>
-    <a href = "{% url 'recipes:forkrecipe' recipe.id %}">fork recipe</a>
-</p>
+
 
 {% endblock %}

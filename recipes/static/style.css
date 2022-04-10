@@ -3,6 +3,17 @@ h1 {
 	font-size: 4rem;
 }
 
+h5 {
+    font-weight: 200;
+    font-size: 1rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .main {
 	border-radius: 15px;
 	padding: 0 0 3% 0;
@@ -21,6 +32,8 @@ h1 {
     align-items: center;
 }
 
+
+/*RECIPE FORM ELEMENTS */
 .recipe-img {
     max-width: 100%;
     margin: 2% 4% 0% 4%;
@@ -30,6 +43,17 @@ h1 {
     padding: 2% 4% 0% 4%;
     }
 
+.instructions {
+    padding: 2% 4% 0% 4%;
+}
+
+.list-of-forks {
+    padding: 2% 4% 0% 4%;
+}
+
+/*RECIPE SUBMISSION FORM PAGE ELEMENTS */
 .recipe-submission {
     padding: 2% 4% 0% 4%;
 }
+
+
