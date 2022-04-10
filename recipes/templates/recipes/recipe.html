@@ -7,19 +7,36 @@
 
 
 {% block content %}
-<h1>{{ recipe.recipe_title }}</h1>
-<ul>
-    {% for element in recipe.recipe_ingredients %}
-    <li>
-        {{ element }}
-    </li>
-    {% endfor %}
-</ul>
-<p>
-    {{ recipe.recipe_instructions}} <br>
-</p>
 
-<img src="{% static ''%}{{ recipe.img }}" class="recipe-img">
+<div class="container main bg-light">
+    <div class="row banner">
+        <h1>{{ recipe.recipe_title }}</h1>
+    </div>
+
+    <div class="row">
+    <!--        Block with the image-->
+        <div class="col-4">
+            {% if recipe.img %}
+            <img src="{% static ''%}{{ recipe.img }}" class="recipe-img">
+            {% else %}
+            <p class="recipe-img">No image</p>
+            {% endif %}
+        </div>
+
+    <!--        Block with the ingredients-->
+        <div class="col-8 ingredients">
+            <p>
+                {{ recipe.recipe_instructions}} <br>
+            </p>
+        </div>
+    </div>
+    <hr>
+    <!--        Ideally block with all the instructions goes here.-->
+    <div class="row instructions">
+
+    </div>
+
+</div>
 
 <p>
     <a href = "{% url 'recipes:forkrecipe' recipe.id %}">fork recipe</a>

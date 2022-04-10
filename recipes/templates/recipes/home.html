@@ -7,10 +7,14 @@
 
 {% block content %}
 
-<h1> This is the Home page</h1>
-<p> look theres html stuff, hello {{name}}</p>
-<a href = "../accounts/google/login/"> log in </a> </br>
-<a href = "{% url 'recipes:recipeform' %}"> add recipe </a> </br>
-<a href = "{% url 'recipes:recipelist' %}"> Browse recipes</a>
+
+<div class="container main">
+    <div class="row banner">
+        <h1>Word of Mouth</h1>
+        <p>Where you can get the latest bites.</p>
+    </div>
+
+</div>
+
 
 {% endblock %}
