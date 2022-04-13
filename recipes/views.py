@@ -38,9 +38,9 @@ def get_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            recipe = form.save()
-            '''recipe.author = request.user
-            recipe.save(update_fields=['author'])'''
+            recipe = form.save(commit=False)
+            recipe.author = request.user
+            recipe.save()
             return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe.id,)))
     else:
         form = RecipeForm()
@@ -54,6 +54,7 @@ def fork_recipe(request, pk):
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.parent = parent
+            recipe.author = request.user
             recipe.save()
             if (recipe.img == None):
                 recipe.img = parent.img
