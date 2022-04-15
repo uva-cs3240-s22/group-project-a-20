@@ -1,6 +1,6 @@
 <h1> edit page </h1>
 {% if user.name != profile.user.name %}
-<form action="{% url 'recipes:profile' profile.id %}" method="post">
+<form action="{% url 'recipes:updateProfile' profile.id %}" method="post">
     {% csrf_token %}
     <!-- <label for="pic"> Profile Picture: </label>
     <input type="image" id="pic" name="pic"><br><br>

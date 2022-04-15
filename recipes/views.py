@@ -32,6 +32,21 @@ class profile_edit(generic.DetailView):
     model = Profile
     template_name = 'recipes/editprofile.html'
 
+def updateProfile(request, profile_id):
+    profile = get_object_or_404(Profile, pk = profile_id)
+    try:
+        profile.gender = profile.get(pk=request.POST['gender'])
+    except:
+        # temp redisplay to base
+        return render(request, 'recipes/index.html')
+    else:
+        #selected_choice.votes += 1
+        #selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('recipes:profile', args=(profile.id,)))  
+
 #def edit_profile(request):
     #user = get_object_or_404(Profile)
     #if(request.POST['gender']):
