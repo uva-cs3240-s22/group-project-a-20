@@ -34,23 +34,20 @@ class profile_edit(generic.DetailView):
 
 def updateProfile(request, pk):
     profile = get_object_or_404(Profile, pk = pk)
-    try:
-        #profile.gender = profile.choice_set.get(pk=request.POST['gender'])
+    if request.POST['gender']:
         profile.gender = request.POST['gender']
-        #profile.birthday
-        #profile.bio 
+    if request.POST['bday']:
+        profile.birthday = request.POST['bday']
+    if request.POST['bio']:
+        profile.bio = request.POST['bio']
 
-    except:
-        # temp redisplay to base
-        return render(request, 'recipes/index.html')
-    else:
-        #selected_choice.votes += 1
-        #selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        profile.save()
-        return HttpResponseRedirect(reverse('recipes:profile', args=(profile.id,)))  
+    
+    
+    # Always return an HttpResponseRedirect after successfully dealing
+    # with POST data. This prevents data from being posted twice if a
+    # user hits the Back button.
+    profile.save()
+    return HttpResponseRedirect(reverse('recipes:profile', args=(profile.id,)))  
 
 #def edit_profile(request):
     #user = get_object_or_404(Profile)
