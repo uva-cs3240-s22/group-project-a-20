@@ -14,4 +14,6 @@ urlpatterns = [
     path('recipes/fork/<int:pk>/', views.fork_recipe, name = "forkrecipe"),
     # for account authentication
     path('accounts/', include('allauth.urls')),
+    # for comments
+    path('recipes/<int:pk>/comments/', include('django_comments_xtd.urls')),
 ]
