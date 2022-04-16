@@ -75,7 +75,7 @@ def fork_recipe(request, pk):
             'recipe_ingredients': parent.recipe_ingredients, 
             'recipe_instructions': parent.recipe_instructions, },
             initial={'img': parent.img}
-            )
+        )
     return render(request, 'recipes/recipeform.html', {'form': form, 'recipe': parent})
 
 # Brings you to the list of recipes, ordered by date submitted
