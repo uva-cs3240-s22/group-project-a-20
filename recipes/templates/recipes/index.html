@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% load socialaccount %}
+    {% if user.is_authenticated %}
+      <p>Welcome, {{ user.username }}!</p>
+        <!--This line below needs to be able to grab its own pk somehow. 
+        Temp will just be 1 but we need a manner to get login user's pk-->
+        <a href="{% url 'recipes:profile' 1%}">View Profile</a>
+    <a href=""></a>
+    {% else %}
+        <h2>Welcome to Word of Mouth! Please login to continue.</h2>
+        <a href="{% provider_login_url 'google' %}">Login With Google</a>
+    {% endif %}
+</body>
+</html>
