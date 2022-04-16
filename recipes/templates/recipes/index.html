@@ -8,7 +8,9 @@
     {% load socialaccount %}
     {% if user.is_authenticated %}
       <p>Welcome, {{ user.username }}!</p>
-        <a href="{% url 'recipes:profile' %}">View Profile</a>
+        <!--This line below needs to be able to grab its own pk somehow. 
+        Temp will just be 1 but we need a manner to get login user's pk-->
+        <a href="{% url 'recipes:profile' 1%}">View Profile</a>
     <a href=""></a>
     {% else %}
         <h2>Welcome to Word of Mouth! Please login to continue.</h2>
