@@ -17,4 +17,6 @@ urlpatterns = [
     path('<int:recipe_id>/<int:user_id>', views.favorite, name = "favorite"),
     # for account authentication
     path('accounts/', include('allauth.urls')),
+    # for comments
+    path('recipes/<int:pk>/comments/', include('django_comments_xtd.urls')),
 ]
