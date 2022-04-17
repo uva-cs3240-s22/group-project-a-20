@@ -62,7 +62,7 @@
             {% if user.is_authenticated %}
                 <ul class="navbar-nav nav nav-item navbar-right">
                     <li class="vertical-center nav-link active">{{user.username}}</li>
-                    <li><a class="nav-link" href={% provider_login_url 'google' %}><button type="button" class="btn btn-primary" disabled>Logged In</button></a></li>
+                    <li><a class="nav-link" href="/accounts/logout/"><button type="button" class="btn btn-primary">Log Out</button></a></li>
                 </ul>
             {% else %}
                 <ul class="navbar-nav nav nav-item navbar-right">
