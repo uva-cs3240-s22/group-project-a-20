@@ -1,3 +1,5 @@
+{% load custom_tags %}
+
 <h1> edit page </h1>
 {% if user.name == profile.user.name %}
 <form action="{% url 'recipes:updateProfile' profile.id %}" method="post">

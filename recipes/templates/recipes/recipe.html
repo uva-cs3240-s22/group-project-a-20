@@ -1,6 +1,7 @@
 {% extends "recipes/base.html" %}
 
 {% load static %}
+{% load custom_tags %}
 
 {% block description %}Recipe information for {{ recipe.recipe_title }}{% endblock %}
 {% block title %}{{ recipe.recipe_title }}{% endblock %}
@@ -32,7 +33,9 @@
         <div class="col-8 ingredients">
             <h3>Ingredients</h3>
             <ul>
-                {% for element in recipe.recipe_ingredients %}
+                {% string_to_list recipe.recipe_ingredients as ingredients %}
+                {% for element in ingredients %}
+
                 <li>{{ element }} </li>
                 {% endfor %}
             </ul>
