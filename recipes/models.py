@@ -1,13 +1,12 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=100)
-    recipe_ingredients = ArrayField(base_field=models.CharField(max_length=100), null=True)
-    recipe_instructions = models.CharField(max_length=5000)
+    recipe_ingredients = models.CharField(max_length=5000)
+    recipe_instructions = models.CharField(max_length=5000, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey(
         'self',
