@@ -75,9 +75,9 @@ class ViewsTests(TestCase):
         self.assertContains(response, muffins)
 
     def test_recipe_view(self):
-        cookies = createRecipe("cookies")
-        response = self.client.get(reverse('recipes:recipe/1'))
-
+        createRecipe("cookies")
+        response = self.client.get(reverse('recipes:recipe', args=[1]))
+        self.assertEqual(response.status_code, 200)
 
 
 #class RecipePageDisplayed(TestCase):
