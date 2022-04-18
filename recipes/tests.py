@@ -3,9 +3,9 @@ from django.test import TestCase
 from recipes.models import Recipe, Profile
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-
-#We'll need to import the models once we make them
-#from recipes.models import _________
+from django.utils import timezone
+import datetime
+from django.urls import reverse
 
 class DummyTests(TestCase):
     def test_1(self):
@@ -34,6 +34,26 @@ class ModelsTests(TestCase):
     #Profile
     def test_profile_name_to_string(self):
         self.assertEqual(str(self.user_1), "Fippy Darkpaw")
+
+def CreateProfile(user, gender, birthday, bio, days):
+    time = timezone.now() + datetime.timedelta(days=days)
+    return Profile.objects.create(user = user, gender = gender, birthday = birthday, bio = bio, created_at = time)
+
+def CreateUser(name, email, field3):
+    return User.objects.create_user(name, email, field3)
+
+class ProfileTests(TestCase):
+    def test_update(self):
+        user = CreateUser("me", "me@gmail.com", "gabagoo")
+        prof = CreateProfile(user, "male", datetime.date.today(), "it me!", -5)
+        prof.bio = "no its me!"
+        self.assertEqual(prof.updated_at, timezone.now())
+
+    def test_own_profile(self):
+        user = CreateUser("me", "me@gmail.com", "gabagoo")
+        prof = CreateProfile(user, "male", datetime.date.today(), "it me!", 0)
+        response = self.client.get(reverse('recipes:editprofile', args=(prof.id,)))
+        self.assertNotEqual(response.status_code, 404)
 
 
 #class RecipePageDisplayed(TestCase):
