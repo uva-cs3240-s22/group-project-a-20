@@ -15,31 +15,47 @@ def home(request):
     return render(request, 'recipes/home.html', {'recipe_list': recipe_list})
 
 #for personal profile, so editable
-class profile_detail(generic.DetailView):
-    model = Profile
-    template_name = 'recipes/profile.html'
+'''class profile_detail(generic.DetailView):
+    model = User
+    template_name = 'recipes/profile.html'''
+
+def profile(request, pk): 
+    user = get_object_or_404(User, pk = pk)
+    try: 
+        profile = user.profile
+    except (Profile.DoesNotExist):
+        profile = Profile()
+        profile.user = user
+        profile.save()
+        return HttpResponseRedirect(reverse('recipes:editprofile', args=(profile.id,)))
+    return render(request, 'recipes/profile.html', {'profile': profile})
 
 @method_decorator(login_required, name='dispatch')
-class profile_edit(generic.DetailView):
+class ProfileUpdateView(generic.UpdateView):
     model = Profile
+    fields = ['gender', 'birthday', 'bio']
     template_name = 'recipes/editprofile.html'
-
-def updateProfile(request, pk):
-    profile = get_object_or_404(Profile, pk = pk)
-    if request.POST['gender']:
-        profile.gender = request.POST['gender']
-    if request.POST['bday']:
-        profile.birthday = request.POST['bday']
-    if request.POST['bio']:
-        profile.bio = request.POST['bio']
+#@method_decorator(login_required, name='dispatch')
+#class profile_edit(generic.DetailView):
+#    model = Profile
+#    template_name = 'recipes/editprofile.html'
+#
+#def updateProfile(request, pk):
+#    profile = get_object_or_404(Profile, pk = pk)
+#    if request.POST['gender']:
+#        profile.gender = request.POST['gender']
+#    if request.POST['bday']:
+#        profile.birthday = request.POST['bday']
+#    if request.POST['bio']:
+#        profile.bio = request.POST['bio']
 
     
     
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
-    profile.save()
-    return HttpResponseRedirect(reverse('recipes:profile', args=(profile.id,)))
+#    profile.save()
+#    return HttpResponseRedirect(reverse('recipes:profile', args=(profile.user,)))
 
 # Handles recipe submission. By default it takes you to the form to submit a recipe. 
 # When you submit a recipe, it can handle the data and redirect to the new recipe page

@@ -61,7 +61,7 @@
             {% load socialaccount %}
             {% if user.is_authenticated %}
                 <ul class="navbar-nav nav nav-item navbar-right">
-                    <li class="vertical-center nav-link active">{{user.username}}</li>
+                    <li class="vertical-center nav-link active"><a href = "{% url 'recipes:profile' user.id %}">{{user.username}}</a></li>
                     <li><a class="nav-link" href="/accounts/logout/"><button type="button" class="btn btn-primary">Log Out</button></a></li>
                 </ul>
             {% else %}
