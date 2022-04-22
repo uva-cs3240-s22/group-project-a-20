@@ -18,7 +18,7 @@ class Recipe(models.Model):
     img = models.ImageField(upload_to='recipe_images/', blank=True, null=True)
     favorite = models.ManyToManyField(
         User, 
-        related_name='favorite',
+        related_name='favorites',
     )
 
     def __str__(self):
