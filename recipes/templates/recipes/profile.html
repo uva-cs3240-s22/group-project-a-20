@@ -1,16 +1,19 @@
+{% extends "recipes/base.html" %}
+
+{% load static %}
 {% load custom_tags %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% block title %}{% endblock title %}
+{% block description %}Profile Page{% endblock %}
+{% block title %}Profile Page{% endblock %}
+
 {% block content %}
-    <div class="row my-3 p-3">
+
+<div class="container main bg-light">
+    <div class="row banner">
         <h1>This is the profile page for {{profile.user.username}}</h1>
+    </div>
+
+    <div class="row my-3 p-3">
         <p> Gender: {{profile.gender}}</p>
         <p> Birthday: {{profile.birthday}} </p>
         <p> Bio: {{profile.bio}}</p>
@@ -21,7 +24,6 @@
     <form action="{% url 'recipes:editprofile' profile.id %}">
         <input type="submit" value="Edit Profile" />
     </form>
+</div>
 
-{% endblock content %}
-</body>
-</html>
+    {% endblock %}

@@ -16,7 +16,52 @@ ul {
 
 .main {
 	border-radius: 15px;
-	padding: 0 0 3% 0;
+	padding: 0 1% 2% 1%;
+}
+
+.frontpage-head {
+    padding: 0 1% 9% 1%;
+    background-color: #772953;
+    color: white;
+    text-align: center;
+}
+
+.frontpage-head h1 {
+    font-size: 6.5rem;
+}
+
+.frontpage-row {
+    padding: 0% 15% 0% 15%;
+}
+
+.title-image {
+    width: 15%;
+    transform: rotate(10deg); /* Equal to rotateZ(45deg) */
+    position: absolute;
+    z-index: 1;
+}
+
+.top-recipes {
+    margin-top: 50px;
+    background-color: #c8a9ba;
+    position:  relative;
+    z-index: 2;
+    border-radius: 15px;
+}
+
+.top-recipes h2 {
+    padding: 1% 1% 1% 1%;
+}
+
+.top-recipes-cards {
+    background-color: #e3d4dc;
+    border-radius: 0 0 15px 15px;
+    padding: 0 0 2% 0;
+}
+
+.card {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .banner {
@@ -54,6 +99,21 @@ ul {
 /*RECIPE SUBMISSION FORM PAGE ELEMENTS */
 .recipe-submission {
     padding: 2% 4% 0% 4%;
+}
+
+
+/*Resizes and gets rid of the fork on smaller screens*/
+@media (max-width:  1028px) {
+    .title-image {
+        width: 0%;
+        position: static;
+    }
+
+    .frontpage-head h1 {
+        font-size: 4rem;
+    }
+
+
 }
 
 

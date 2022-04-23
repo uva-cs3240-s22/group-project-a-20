@@ -7,25 +7,36 @@
 {% block title %}Welcome to Word of Mouth{% endblock %}
 
 {% block content %}
+<div class="container-fluid frontpage-head">
+    <div class="row frontpage-row">
 
+        <div class="col-md-8">
+            <h1>Word of Mouth</h1>
+            <h4>Where you can get the latest bites.</h4>
+            <br><br><br>
+            <h4>Check out recipes others have posted, or log in to post some of your own!</h4>
+            <br>
+            <a class="nav-link" href="{% url 'recipes:recipelist' %}"><button type="button" class="btn btn-primary">See the List of Recipes</button></a>
 
-<div class="container main">
-    <div class="row banner">
-        <h1>Word of Mouth</h1>
-        <p>Where you can get the latest bites.</p>
+        </div>
+        <div class="col-md-4">
+            <img class="title-image" src="{% static 'fork.png' %}" alt="A fork with spaghetti on it">
+        </div>
+
     </div>
+
 </div>
 
-    <br>
-<div class="container main">
-    <h2>Top Recipes of the Week</h2>
-    <div class="row">
 
-    {% for item in recipe_list %}
+<div class="container top-recipes">
+    <h2>Top Recipes of the Week</h2>
+    <div class="row top-recipes-cards">
+
+        {% for item in recipe_list %}
         <div class="col-md-4">
             <div class="card">
                 <a href="{% url 'recipes:recipe' item.pk %}">
-                <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
+                    <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
                 </a>
                 <div class="card-body">
                     <h5 class="card-title">{{ item.recipe_title }}</h5>
@@ -36,9 +47,8 @@
             </div>
         </div>
 
-    {% endfor %}
+        {% endfor %}
     </div>
 </div>
-
 
 {% endblock %}
