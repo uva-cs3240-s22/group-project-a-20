@@ -1,6 +1,6 @@
 h1 {
-	font-weight: 700;
-	font-size: 4rem;
+    font-weight: 700;
+    font-size: 4rem;
 }
 
 h5 {
@@ -15,8 +15,8 @@ ul {
 }
 
 .main {
-	border-radius: 15px;
-	padding: 0 1% 2% 1%;
+    border-radius: 15px;
+    padding: 0 1% 2% 1%;
 }
 
 .frontpage-head {
@@ -66,9 +66,9 @@ ul {
 
 .banner {
     text-align: center;
-	padding: 2% 5% 0 5%;
-	margin: 40px 0 10px 0;
-	border-radius: 15px
+    padding: 2% 5% 0 5%;
+    margin: 40px 0 10px 0;
+    border-radius: 15px
 }
 
 .vertical-center {
@@ -76,6 +76,24 @@ ul {
     justify-content: center;
     align-items: center;
 }
+
+/*Recipe List Elements */
+
+.recipe-list-main {
+
+}
+
+.recipe-list-row {
+    border: 2px;
+    border-color: black;
+    height: 100px;
+}
+
+.recipe-list-img {
+    max-height: 100%;
+}
+
+
 
 
 /*RECIPE FORM ELEMENTS */
@@ -101,6 +119,87 @@ ul {
     padding: 2% 4% 0% 4%;
 }
 
+/*Fancy recipe list*/
+.recipe-list {
+    padding: 1% 5% 1% 5%;
+}
+
+.recipe-list-container {
+    /*display: grid;*/
+    place-items: center;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    position: relative;
+    /*display: grid;*/
+    grid-template-columns: 300px 600px;
+    border-radius: 5px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.356);
+    margin: 40px 100px 40px 100px;
+}
+
+.recipe-list-container img {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.recipe-list-container .btn {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    background-color: #e95420;
+    color: #ffffff;
+    padding: 22px 45px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.294);
+}
+
+.recipe-list-container .btn i {
+    margin-left: 20px;
+    font-size: 1.5rem;
+}
+
+.container__text {
+    padding: 40px 40px 0;
+}
+.container__text h2 {
+    color: black;
+    font-weight: 400;
+}
+.container__text .container__text__star span {
+    font-size: 0.8rem;
+    color: #ffa800;
+    margin: -5px 0 20px;
+}
+.container__text p {
+    font-size: 0.9rem;
+}
+.container__text .container__text__timing {
+    display: flex;
+    margin: 20px 0 10px;
+}
+.container__text .container__text__timing .container__text__timing_time {
+    margin-right: 40px;
+    }
+.container__text .container__text__timing h2 {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #818189;
+}
+
+.container__text .container__text__timing p {
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
 /*Resizes and gets rid of the fork on smaller screens*/
 @media (max-width:  1028px) {
@@ -113,7 +212,12 @@ ul {
         font-size: 4rem;
     }
 
+    .recipe-list {
+        padding: 0%;
+    }
+
+    .recipe-list-container {
+        margin: 40px 0px 40px 0px;
+    }
 
 }
-
-

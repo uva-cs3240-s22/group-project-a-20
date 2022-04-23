@@ -8,15 +8,66 @@
 
 {% block content %}
 
-{% if recipes_list %}
-    <ul class="list-group">
-        {% for recipe in recipes_list %}
-            <li class="list-group-item"><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.recipe_title }}</a></li>
-        {% endfor %}
-    </ul>
 
-{% else %}
+<div class="container recipe-list">
+    {% if recipes_list %}
+    {% for recipe in recipes_list %}
+
+    <div class="recipe-list-container">
+        <div class="row">
+            <div class="col-md-4">
+                {% if recipe.img %}
+                <img src="{% static ''%}{{ recipe.img }}" style="object-fit: contain;" alt="Image of {{ recipe.recipe_title }}">
+                {% else %}
+                <img src="{% static 'noimage.png'%}" alt="No image">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="container__text">
+                    <h2>{{ recipe.recipe_title }}</h2>
+
+<!--                    Star rating div-->
+                    <div class="container__text__star">
+<!--                        For loop to output how many stars the recipe currently has-->
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+
+                    </div>
+
+                    <p>
+<!--                        Description would go here!-->
+                    </p>
+
+                    <div class="container__text__timing">
+                        <!--             <div class="container__text__timing_time">
+                                        <h2>Hands-on Time</h2>
+                                        <p>30 min</p>
+                                    </div>
+                                    <div class="container__text__timing_time">
+                                        <h2>Total Time</h2>
+                                        <p>40 min</p>
+                                    </div>
+                                    <div class="container__text__timing_time">
+                                        <h2>Yield</h2>
+                                        <p>40 min</p>
+                                    </div> -->
+                    </div>
+                    <a href="{% url 'recipes:recipe' recipe.id %}">
+                        <button class="btn">view recipe <i class="fa fa-arrow-right"></i></button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {% else %}
     <p>Waiting for recipes.</p>
-{% endif %}
+    {% endif %}
+
+</div>
 
 {% endblock %}
