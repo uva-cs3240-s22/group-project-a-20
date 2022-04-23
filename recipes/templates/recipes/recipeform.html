@@ -14,19 +14,29 @@
         <h1>Submit a New Recipe</h1>
     </div>
 
+    {% if user.is_authenticated %}
     <div class="row">
         <div class="col-8 recipe-submission">
             {% if form.is_bound %}
-                <form action="{% url 'recipes:forkrecipe' recipe.id %}" method="post" enctype="multipart/form-data">
-            {% else %}
+            <form action="{% url 'recipes:forkrecipe' recipe.id %}" method="post" enctype="multipart/form-data">
+                {% else %}
                 <form action="{% url 'recipes:recipeform' %}" method="post" enctype="multipart/form-data">
-            {% endif %}
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
+                    {% endif %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                </form>
             </form>
         </div>
     </div>
+
+    {% else %}
+    <div class="row">
+        <p>Please login to be able to submit a recipe.</p>
+        <a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}"><button type="button" class="btn btn-primary">Login With Google</button></a>
+    </div>
+
+    {% endif %}
 
 </div>
 

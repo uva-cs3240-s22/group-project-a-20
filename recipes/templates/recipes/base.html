@@ -72,7 +72,7 @@
             {% else %}
                 <ul class="navbar-nav nav nav-item navbar-right">
                     <li class="vertical-center nav-link active">You are not logged in</li>
-                    <li><a class="nav-link" href={% provider_login_url 'google' %}><button type="button" class="btn btn-primary">Login With Google</button></a></li>
+                    <li><a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}"><button type="button" class="btn btn-primary">Login With Google</button></a></li>
                 </ul>
             {% endif %}
 <!--            END LOGIN SECTION OF NAVBAR-->
