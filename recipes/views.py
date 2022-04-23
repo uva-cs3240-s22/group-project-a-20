@@ -35,6 +35,8 @@ class ProfileUpdateView(generic.UpdateView):
     model = Profile
     fields = ['gender', 'birthday', 'bio']
     template_name = 'recipes/editprofile.html'
+    def get_success_url(self):
+        return reverse('recipes:profile', kwargs={'pk': self.object.user.id})
 #@method_decorator(login_required, name='dispatch')
 #class profile_edit(generic.DetailView):
 #    model = Profile
@@ -106,3 +108,8 @@ class RecipeListView(generic.ListView):
 class RecipeView(generic.DetailView):
     model = Recipe
     template_name = 'recipes/recipe.html'
+
+def favorite(request, recipe_id, user_id):
+    recipe = Recipe.objects.get(pk = recipe_id)
+    user = User.objects.get(pk = user_id)
+    recipe.user_set.add(user)
