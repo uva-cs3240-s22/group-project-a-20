@@ -47,7 +47,12 @@
     <div class="row instructions">
         <h3>Instructions</h3>
         <ol>
-            <li>{{ recipe.recipe_instructions }}</li>
+            {% string_to_list recipe.recipe_instructions as instructions %}
+            {% for element in instructions %}
+
+            <li>{{ element }} </li>
+            <br>
+            {% endfor %}
         </ol>
     </div>
     <hr>
