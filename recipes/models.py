@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 
 class Recipe(models.Model):
     recipe_title = models.CharField(max_length=100)
-    recipe_ingredients = models.CharField(max_length=5000)
-    recipe_instructions = models.CharField(max_length=5000, null=True)
+    recipe_ingredients = models.CharField(max_length=5000, help_text='Separate ingredients with a comma, please.')
+    recipe_instructions = models.CharField(max_length=5000, null=True,
+                                           #help_text='Separate instructions with a semicolon, please.'
+                                           )
     pub_date = models.DateTimeField(auto_now_add=True)
     parent = models.ForeignKey(
         'self',

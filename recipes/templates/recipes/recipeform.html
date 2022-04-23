@@ -15,7 +15,7 @@
     </div>
 
     <div class="row">
-        <div class="col-6 recipe-submission">
+        <div class="col-8 recipe-submission">
             {% if form.is_bound %}
                 <form action="{% url 'recipes:forkrecipe' recipe.id %}" method="post" enctype="multipart/form-data">
             {% else %}
