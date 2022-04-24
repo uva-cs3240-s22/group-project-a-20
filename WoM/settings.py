@@ -219,4 +219,5 @@ if 'DATABASE_URL' in os.environ:
 
 if 'HEROKU' in os.environ:
     import django_heroku
+    DEBUG = False
     django_heroku.settings(locals())
