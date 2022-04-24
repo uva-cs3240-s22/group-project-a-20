@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-qq#lx_zeo9w-=z#webh+ei^517&q^fgo-f$h(@lqwxoj+&xifw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SESSION_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = ['127.0.0.1', 'cs3240-a-20-wom.herokuapp.com']
 
 
