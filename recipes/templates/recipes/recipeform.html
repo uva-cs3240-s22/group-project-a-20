@@ -11,7 +11,11 @@
 
 <div class="container main bg-light">
     <div class="row banner">
-        <h1>Submit a New Recipe</h1>
+        {% if form.is_bound %}
+            <h1>Fork a Recipe</h1>
+        {% else %}
+            <h1>Submit a New Recipe</h1>
+        {% endif %}
     </div>
 
     {% if user.is_authenticated %}
