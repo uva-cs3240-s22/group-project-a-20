@@ -8,6 +8,10 @@ h5 {
     font-size: 1rem;
 }
 
+.recipe-link {
+    text-decoration: none;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
