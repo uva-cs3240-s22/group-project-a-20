@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('recipes.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path(r'^comments/', include('django_comments_xtd.urls'))
 ]
 
 if settings.DEBUG:

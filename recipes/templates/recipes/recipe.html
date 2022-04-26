@@ -69,10 +69,6 @@
     </div>
 </div>
 
-
-
-{% endblock %}
-
 {% load comments %}
 {% get_comment_count for object as comment_count %}
 <div class="py-4 text-center">
@@ -92,3 +88,6 @@
       {% render_comment_form for object %}
   </div>
 </div>
+
+{% endblock %}
+

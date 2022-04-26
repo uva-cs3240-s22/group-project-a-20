@@ -68,8 +68,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'WoM.urls'
 
@@ -225,6 +225,9 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_CONFIRM_EMAIL = False
 
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
