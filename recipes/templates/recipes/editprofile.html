@@ -1,0 +1,29 @@
+{% extends "recipes/base.html" %}
+
+{% load static %}
+{% load custom_tags %}
+
+{% block description %}Profile Page{% endblock %}
+{% block title %}Profile Page{% endblock %}
+
+{% block content %}
+
+<div class="container main bg-light">
+    <div class="row banner">
+
+        <h1>Edit Profile</h1>
+
+    </div>
+    <div class="row">
+        {% if user.name == profile.user.name %}
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update">
+        </form>
+        {% else %}
+        <p> This is not your profile to edit. <a href = "{% url 'recipes:profile' user.id %}"> Return to this profile </a></p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

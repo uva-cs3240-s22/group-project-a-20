@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-qq#lx_zeo9w-=z#webh+ei^517&q^fgo-f$h(@lqwxoj+&xifw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SESSION_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = ['127.0.0.1', 'cs3240-a-20-wom.herokuapp.com']
 
 
@@ -65,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'WoM.urls'
 
@@ -206,6 +211,8 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCONT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_LOGIN_ON_GET=True
+
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -225,4 +232,5 @@ if 'DATABASE_URL' in os.environ:
 
 if 'HEROKU' in os.environ:
     import django_heroku
+    DEBUG = False
     django_heroku.settings(locals())
