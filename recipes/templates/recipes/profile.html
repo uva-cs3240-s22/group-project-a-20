@@ -66,8 +66,9 @@
                         <h5 class="card-title">{{ item.recipe_title }}</h5>
                         <p class="card-text">
                             <a href="{% url 'recipes:recipe' item.pk %}">View this Recipe</a> 
-                            <form action="{% url 'recipes:profilefavorite' user.id item.id %}" method='POST'>
+                            <form action="{% url 'recipes:favorite' item.id user.id %}" method='POST'>
                                 {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.path }}">
                                 <input type="submit" value="Remove Favorite">
                             </form>
                         </p>

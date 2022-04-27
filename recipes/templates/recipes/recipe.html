@@ -72,6 +72,7 @@
 {% if user.is_authenticated %}
 <form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST'>
     {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.path }}">
     {% if user in user_set %}
     <input type="submit" value="Remove Favorite">
     {% else %}

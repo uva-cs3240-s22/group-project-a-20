@@ -15,7 +15,6 @@ urlpatterns = [
     path('recipes/<int:pk>/', views.RecipeView.as_view(), name = 'recipe'),
     path('recipes/fork/<int:pk>/', views.fork_recipe, name = "forkrecipe"),
     path('<int:recipe_id>/<int:user_id>', views.favorite, name = "favorite"),
-    path('profile/<int:user_id>/<int:recipe_id>', views.profile_favorite, name = "profilefavorite"),
     # for account authentication
     path('accounts/', include('allauth.urls')),
     # for comments
