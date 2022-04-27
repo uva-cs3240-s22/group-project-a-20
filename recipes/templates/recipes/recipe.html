@@ -46,7 +46,7 @@
     <!--        Ideally block with all the instructions goes here.-->
     <div class="row instructions">
         <h3>Instructions</h3>
-        <ol>
+         <ol>
             {% string_to_list recipe.recipe_instructions as instructions %}
             {% for element in instructions %}
 
@@ -59,8 +59,8 @@
 
     <!--        And forks go here. -->
     <div class="row list-of-forks">
-        <a href = "{% url 'recipes:forkrecipe' recipe.id %}">Fork recipe</a>
-        {% if recipe.recipe_set.all %}
+        <a class="nav-link" href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
+         {% if recipe.recipe_set.all %}
             Forks:<br>
             {% for element in recipe.recipe_set.all %}
                 <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a><br>
@@ -69,6 +69,7 @@
     </div>
 </div>
 
+{% if user.is_authenticated %}
 <form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST'>
     {% csrf_token %}
     {% if user in user_set %}
@@ -77,6 +78,7 @@
     <input type="submit" value="Add Favorite" />
     {% endif %}
 </form>
+{% endif %}
 
 {% load comments %}
 {% get_comment_count for object as comment_count %}
