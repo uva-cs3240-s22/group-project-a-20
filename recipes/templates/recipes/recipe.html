@@ -11,7 +11,29 @@
 
 <div class="container main bg-light">
     <div class="row banner">
-        <h1>{{ recipe.recipe_title }}</h1>
+        <div class="col-9">
+            <h1>{{ recipe.recipe_title }}</h1>
+        </div>
+
+        <div class="col-3">
+            {% if user.is_authenticated %}
+            <form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST' id="favorites-btn">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+
+                {% if user in user_set %}
+                <a href="#" onclick="document.getElementById('favorites-btn').submit();">
+                    <i class="fas fa-heart js-heart heart active" id="heart"></i></a>
+                Remove from favorites
+                {% else %}
+                <a href="#" onclick="document.getElementById('favorites-btn').submit();">
+                    <i class="far fa-heart js-heart heart inactive" id="heart"></i></a>
+                Add to favorites
+                {% endif %}
+            </form>
+            {% endif %}
+        </div>
+
         {% if recipe.parent %}
             <h5>Forked from <a href="{% url 'recipes:recipe' recipe.parent.id %}">{{ recipe.parent.recipe_title }}</a></h5>
         {% endif %}
@@ -59,7 +81,7 @@
 
     <!--        And forks go here. -->
     <div class="row list-of-forks">
-        <a class="nav-link" href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
+        <a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
          {% if recipe.recipe_set.all %}
             Forks:<br>
             {% for element in recipe.recipe_set.all %}
@@ -69,17 +91,6 @@
     </div>
 </div>
 
-{% if user.is_authenticated %}
-<form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST'>
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{ request.path }}">
-    {% if user in user_set %}
-    <input type="submit" value="Remove Favorite">
-    {% else %}
-    <input type="submit" value="Add Favorite" />
-    {% endif %}
-</form>
-{% endif %}
 
 {% load comments %}
 {% get_comment_count for object as comment_count %}
@@ -100,6 +111,36 @@
       {% render_comment_form for object %}
   </div>
 </div>
+
+<script>
+// gets a reference to the heartDOm
+const heartDOM = document.querySelector('.js-heart');
+    let liked = heartDOM.classList.contains("fas");
+    console.log(liked);
+
+// create a onclick listener
+heartDOM.onclick = (event) => {
+    // check if liked
+    liked = !liked; // toggle the like ( flipping the variable)
+
+    // this is what we clicked on
+    const target = event.currentTarget;
+
+    if (liked) {
+        // remove empty heart if liked and add the full heart
+        target.classList.remove('far');
+        target.classList.add('fas', 'pulse');
+    } else {
+        // remove full heart if unliked and add empty heart
+        target.classList.remove('fas');
+        target.classList.add('far');
+    }
+}
+
+heartDOM.addEventListener('animationend', (event) => {
+    event.currentTarget.classList.remove('pulse');
+})
+</script>
 
 {% endblock %}
 

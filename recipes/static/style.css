@@ -118,6 +118,29 @@ ul {
     padding: 2% 4% 0% 4%;
 }
 
+.far {
+
+}
+
+.fas {
+	color: red;
+}
+
+.heart {
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.pulse {
+	animation: pulse .5s;
+}
+
+@keyframes .pulse {
+	0% {transform: scale(1); }
+	100% {transform: scale(1);}
+	100% {transform: scale(1);}
+}
+
 /*RECIPE SUBMISSION FORM PAGE ELEMENTS */
 .recipe-submission {
     padding: 2% 4% 0% 4%;
