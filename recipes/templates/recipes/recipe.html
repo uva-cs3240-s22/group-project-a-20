@@ -91,25 +91,29 @@
     </div>
 </div>
 
+<hr class="comments-hr">
 
-{% load comments %}
-{% get_comment_count for object as comment_count %}
-<div class="py-4 text-center">
-  &nbsp;&sdot;&nbsp;
-  {{ comment_count }} comment{{ comment_count|pluralize }}
-  ha{{ comment_count|pluralize:"s,ve" }} been posted.
-</div>
-{% if comment_count %}
-<hr/>
-<div class="comments">
-  {% render_comment_list for object %}
-</div>
-{% endif %}
-<div class="card card-block mb-5">
-  <div class="card-body">
-    <h4 class="card-title text-center pb-3">Post your comment</h4>
-      {% render_comment_form for object %}
-  </div>
+<div class="container bg-light comments">
+    <div class="row comments-posted text-center">
+        {% load comments %}
+        <p>
+        {% get_comment_count for object as comment_count %}
+            {{ comment_count }} comment{{ comment_count|pluralize }}
+            ha{{ comment_count|pluralize:"s,ve" }} been posted.
+        </p>
+    </div>
+
+    {% if comment_count %}
+    <div class="comment-list">
+      {% render_comment_list for object %}
+    </div>
+    {% endif %}
+    <div class="card card-block mb-5">
+      <div class="card-body">
+        <h4 class="card-title text-center pb-3">Post your comment</h4>
+          {% render_comment_form for object %}
+      </div>
+    </div>
 </div>
 
 <script>
@@ -136,7 +140,7 @@ heartDOM.onclick = (event) => {
         target.classList.add('far');
     }
 }
-
+// animation DOES NOT WORK
 heartDOM.addEventListener('animationend', (event) => {
     event.currentTarget.classList.remove('pulse');
 })
