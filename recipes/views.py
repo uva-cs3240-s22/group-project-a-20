@@ -28,7 +28,8 @@ def profile(request, pk):
         profile.user = user
         profile.save()
         return HttpResponseRedirect(reverse('recipes:editprofile', args=(profile.id,)))
-    return render(request, 'recipes/profile.html', {'profile': profile})
+    favorites = user.favorites.all()
+    return render(request, 'recipes/profile.html', {'profile': profile, 'favorites': favorites})
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdateView(generic.UpdateView):
@@ -108,6 +109,10 @@ class RecipeListView(generic.ListView):
 class RecipeView(generic.DetailView):
     model = Recipe
     template_name = 'recipes/recipe.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_set'] = self.get_object().favorite.all()
+        return context
 
 def favorite(request, recipe_id, user_id):
     recipe = Recipe.objects.get(pk = recipe_id)

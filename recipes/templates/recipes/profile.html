@@ -19,7 +19,14 @@
         <p> Bio: {{profile.bio}}</p>
         <p> Created: {{profile.created_at}}</p>
         <p> Last edited: {{profile.updated_at}} </p>
+        <ul>
+            {% for recipe in favorites %}
+                <li><a href="{% url 'recipes:recipe' recipe.id %}">{{ recipe.recipe_title }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
+
+    
 
     <form action="{% url 'recipes:editprofile' profile.id %}">
         <input type="submit" value="Edit Profile" />
