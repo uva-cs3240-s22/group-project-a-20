@@ -34,6 +34,14 @@
                         <h5 class="card-title">{{ item.recipe_title }}</h5>
                         <p class="card-text">
                             <a href="{% url 'recipes:recipe' item.pk %}">View this Recipe</a>
+                            <form action="{% url 'recipes:profilefavorite' user.id item.id %}" method='POST'>
+                                {% csrf_token %}
+                                {% if item in favorites %}
+                                <input type="submit" value="Remove Favorite">
+                                {% else %}
+                                <input type="submit" value="Add Favorite" />
+                                {% endif %}
+                            </form>
                         </p>
                     </div>
                 </div>
@@ -58,7 +66,7 @@
                         <h5 class="card-title">{{ item.recipe_title }}</h5>
                         <p class="card-text">
                             <a href="{% url 'recipes:recipe' item.pk %}">View this Recipe</a> 
-                            <form action="{% url 'recipes:favoritehome' item.id user.id %}" method='POST'>
+                            <form action="{% url 'recipes:profilefavorite' user.id item.id %}" method='POST'>
                                 {% csrf_token %}
                                 <input type="submit" value="Remove Favorite">
                             </form>

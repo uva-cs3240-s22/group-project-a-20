@@ -126,3 +126,15 @@ def favorite(request, recipe_id, user_id):
         else:
             user.favorites.remove(recipe)
     return HttpResponseRedirect(reverse('recipes:recipe', args=(recipe_id,)))
+
+def profile_favorite(request, user_id, recipe_id):
+    recipe = Recipe.objects.get(pk = recipe_id)
+    user = User.objects.get(pk = user_id)
+    if request.method == 'POST':
+        try:
+            user.favorites.get(pk = recipe_id)
+        except (Recipe.DoesNotExist):
+            user.favorites.add(recipe)
+        else:
+            user.favorites.remove(recipe)
+    return HttpResponseRedirect(reverse('recipes:profile', kwargs={'pk':user.id}))
