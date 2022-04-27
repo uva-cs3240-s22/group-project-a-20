@@ -29,7 +29,8 @@ def profile(request, pk):
         profile.save()
         return HttpResponseRedirect(reverse('recipes:editprofile', args=(profile.id,)))
     favorites = user.favorites.all()
-    return render(request, 'recipes/profile.html', {'profile': profile, 'favorites': favorites})
+    authored = user.recipe_set.all()
+    return render(request, 'recipes/profile.html', {'profile': profile, 'favorites': favorites, 'authored': authored})
 
 @method_decorator(login_required, name='dispatch')
 class ProfileUpdateView(generic.UpdateView):
