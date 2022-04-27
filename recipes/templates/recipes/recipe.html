@@ -16,22 +16,33 @@
         </div>
 
         <div class="col-3">
-            {% if user.is_authenticated %}
-            <form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST' id="favorites-btn">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}">
+<!--            Favorites Button-->
+            <div class="row">
+                <div class="favorites-form">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'recipes:favorite' recipe.id user.id %}" method='POST' id="favorites-btn">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
 
-                {% if user in user_set %}
-                <a href="#" onclick="document.getElementById('favorites-btn').submit();">
-                    <i class="fas fa-heart js-heart heart active" id="heart"></i></a>
-                Remove from favorites
-                {% else %}
-                <a href="#" onclick="document.getElementById('favorites-btn').submit();">
-                    <i class="far fa-heart js-heart heart inactive" id="heart"></i></a>
-                Add to favorites
-                {% endif %}
-            </form>
-            {% endif %}
+                        {% if user in user_set %}
+                        <a href="#" onclick="document.getElementById('favorites-btn').submit();">
+                            <i class="fas fa-heart js-heart heart active" id="heart"></i></a>
+                        Remove from favorites
+                        {% else %}
+                        <a href="#" onclick="document.getElementById('favorites-btn').submit();">
+                            <i class="far fa-heart js-heart heart inactive" id="heart"></i></a>
+                        Add to favorites
+                        {% endif %}
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+<!--            Top Forking Button-->
+            <div class="row top-fork-button">
+                <span><a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary">
+                    <i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
+                </span>
+            </div>
         </div>
 
         {% if recipe.parent %}
@@ -81,13 +92,20 @@
 
     <!--        And forks go here. -->
     <div class="row list-of-forks">
-        <a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
-         {% if recipe.recipe_set.all %}
-            Forks:<br>
-            {% for element in recipe.recipe_set.all %}
-                <a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a><br>
-            {% endfor %}
-        {% endif %}
+        <div class="col-2">
+            <h5>Add your own twist:</h5>
+            <a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
+        </div>
+        <div class="col-10">
+            {% if recipe.recipe_set.all %}
+                Forks others have made:<br>
+                <ul>
+                {% for element in recipe.recipe_set.all %}
+                    <li><a href="{% url 'recipes:recipe' element.id %}">{{ element.recipe_title }}</a></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
 </div>
 
