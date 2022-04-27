@@ -69,6 +69,8 @@
     </div>
 </div>
 
+<a href="{% url 'recipes:favorite' recipe_id=recipe.id user_id=user.id %}">Add Favorite</a>
+
 {% load comments %}
 {% get_comment_count for object as comment_count %}
 <div class="py-4 text-center">
