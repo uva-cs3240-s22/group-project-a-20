@@ -149,16 +149,6 @@ ul {
 	font-size: 24px;
 }
 
-.pulse {
-	animation: pulse .5s;
-}
-
-@keyframes .pulse {
-	0% {transform: scale(1); }
-	100% {transform: scale(1);}
-	100% {transform: scale(1);}
-}
-
 .comments-hr {
     border-top: 7px dotted gray;
     opacity: 100%;

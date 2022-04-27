@@ -13,6 +13,9 @@
     <div class="row banner">
         <div class="col-9">
             <h1>{{ recipe.recipe_title }}</h1>
+            {% if recipe.parent %}
+            <h5>Forked from <a href="{% url 'recipes:recipe' recipe.parent.id %}">{{ recipe.parent.recipe_title }}</a></h5>
+            {% endif %}
         </div>
 
         <div class="col-3">
@@ -37,17 +40,16 @@
                     {% endif %}
                 </div>
             </div>
+
 <!--            Top Forking Button-->
             <div class="row top-fork-button">
                 <span><a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary">
                     <i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
                 </span>
             </div>
-        </div>
 
-        {% if recipe.parent %}
-            <h5>Forked from <a href="{% url 'recipes:recipe' recipe.parent.id %}">{{ recipe.parent.recipe_title }}</a></h5>
-        {% endif %}
+
+        </div>
 
     </div>
     <div class="row">
@@ -134,35 +136,6 @@
     </div>
 </div>
 
-<script>
-// gets a reference to the heartDOm
-const heartDOM = document.querySelector('.js-heart');
-    let liked = heartDOM.classList.contains("fas");
-    console.log(liked);
-
-// create a onclick listener
-heartDOM.onclick = (event) => {
-    // check if liked
-    liked = !liked; // toggle the like ( flipping the variable)
-
-    // this is what we clicked on
-    const target = event.currentTarget;
-
-    if (liked) {
-        // remove empty heart if liked and add the full heart
-        target.classList.remove('far');
-        target.classList.add('fas', 'pulse');
-    } else {
-        // remove full heart if unliked and add empty heart
-        target.classList.remove('fas');
-        target.classList.add('far');
-    }
-}
-// animation DOES NOT WORK
-heartDOM.addEventListener('animationend', (event) => {
-    event.currentTarget.classList.remove('pulse');
-})
-</script>
 
 {% endblock %}
 
