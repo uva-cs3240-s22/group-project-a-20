@@ -13,11 +13,6 @@ def home(request):
     recipe_list = Recipe.objects.exclude(img__exact='')[:3]
     return render(request, 'recipes/home.html', {'recipe_list': recipe_list})
 
-#for personal profile, so editable
-'''class profile_detail(generic.DetailView):
-    model = User
-    template_name = 'recipes/profile.html'''
-
 def profile(request, pk): 
     user = get_object_or_404(User, pk = pk)
     try: 
@@ -38,27 +33,6 @@ class ProfileUpdateView(generic.UpdateView):
     template_name = 'recipes/editprofile.html'
     def get_success_url(self):
         return reverse('recipes:profile', kwargs={'pk': self.object.user.id})
-#@method_decorator(login_required, name='dispatch')
-#class profile_edit(generic.DetailView):
-#    model = Profile
-#    template_name = 'recipes/editprofile.html'
-#
-#def updateProfile(request, pk):
-#    profile = get_object_or_404(Profile, pk = pk)
-#    if request.POST['gender']:
-#        profile.gender = request.POST['gender']
-#    if request.POST['bday']:
-#        profile.birthday = request.POST['bday']
-#    if request.POST['bio']:
-#        profile.bio = request.POST['bio']
-
-    
-    
-    # Always return an HttpResponseRedirect after successfully dealing
-    # with POST data. This prevents data from being posted twice if a
-    # user hits the Back button.
-#    profile.save()
-#    return HttpResponseRedirect(reverse('recipes:profile', args=(profile.user,)))
 
 # Handles recipe submission. By default it takes you to the form to submit a recipe. 
 # When you submit a recipe, it can handle the data and redirect to the new recipe page
