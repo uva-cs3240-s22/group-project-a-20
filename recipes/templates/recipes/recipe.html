@@ -11,14 +11,14 @@
 
 <div class="container main bg-light">
     <div class="row banner">
-        <div class="col-9">
+        <div class="col-8 col-md-9">
             <h1>{{ recipe.recipe_title }}</h1>
             {% if recipe.parent %}
             <h5>Forked from <a href="{% url 'recipes:recipe' recipe.parent.id %}">{{ recipe.parent.recipe_title }}</a></h5>
             {% endif %}
         </div>
 
-        <div class="col-3">
+        <div class="col-4 col-md-3">
 <!--            Favorites Button-->
             <div class="row">
                 <div class="favorites-form">
@@ -50,9 +50,6 @@
 
 
         </div>
-
-    </div>
-    <div class="row">
 
     </div>
 
@@ -94,11 +91,11 @@
 
     <!--        And forks go here. -->
     <div class="row list-of-forks">
-        <div class="col-2">
+        <div class="col-4 col-md-2">
             <h5>Add your own twist:</h5>
             <a href="{% url 'recipes:forkrecipe' recipe.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-utensils"></i></i> Fork Recipe</button></a>
         </div>
-        <div class="col-10">
+        <div class="col-8 col-md-10">
             {% if recipe.recipe_set.all %}
                 Forks others have made:<br>
                 <ul>
