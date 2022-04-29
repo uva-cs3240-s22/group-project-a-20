@@ -26,15 +26,14 @@
                 <div class="container__text">
                     <h2>{{ recipe.recipe_title }}</h2>
 
-<!--                    Star rating div-->
-                    <div class="container__text__star">
-<!--                        For loop to output how many stars the recipe currently has-->
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-
+<!--                    Favorites info div here-->
+                    <div class="container__text__heart">
+                        {% if recipe.num_favs == 0 %}
+                            <i class="far fa-heart heart"></i>
+                        {% else %}
+                            <i class="fas fa-heart heart"></i>
+                        {% endif %}
+                        Favorited {{ recipe.num_favs }} time{{ recipe.num_favs | pluralize:",s" }}
                     </div>
 
                     <p>

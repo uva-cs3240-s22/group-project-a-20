@@ -81,7 +81,7 @@ class RecipeListView(generic.ListView):
     context_object_name = 'recipes_list'
 
     def get_queryset(self):
-        return Recipe.objects.order_by('pub_date')
+        return Recipe.objects.order_by('pub_date').annotate(num_favs=Count('favorite'))
 
 class RecipeView(generic.DetailView):
     model = Recipe

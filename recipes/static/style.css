@@ -172,7 +172,7 @@ ul {
     padding: 1%;
 }
 
-.comments-posted .btn-secondary {
+.comment-submission .btn-secondary {
     display: none;
 }
 
@@ -235,11 +235,15 @@ ul {
     color: black;
     font-weight: 400;
 }
-.container__text .container__text__star span {
-    font-size: 0.8rem;
-    color: #ffa800;
-    margin: -5px 0 20px;
+.container__text__heart {
+    font-size: 1rem;
+    color: black;
 }
+.container__text__heart .heart {
+    color: red;
+    size: 1rem;
+}
+
 .container__text p {
     font-size: 0.9rem;
 }
