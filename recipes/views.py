@@ -5,13 +5,16 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 from .forms import RecipeForm
 from .models import Recipe, Profile
 
 def home(request):
-    recipe_list = Recipe.objects.exclude(img__exact='')[:3]
-    return render(request, 'recipes/home.html', {'recipe_list': recipe_list})
+    # recipe_list = Recipe.objects.exclude(img__exact='')[:3]
+    topfavs = Recipe.objects.annotate(num_favs=Count('favorite')).order_by('-num_favs').exclude(img__exact='')[:3]
+    # topfavs[0].num_favs
+    return render(request, 'recipes/home.html', {'recipe_list': topfavs})
 
 def profile(request, pk): 
     user = get_object_or_404(User, pk = pk)

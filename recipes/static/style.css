@@ -172,6 +172,10 @@ ul {
     padding: 1%;
 }
 
+.comments-posted .btn-secondary {
+    display: none;
+}
+
 /*RECIPE SUBMISSION FORM PAGE ELEMENTS */
 .recipe-submission {
     padding: 2% 4% 0% 4%;
