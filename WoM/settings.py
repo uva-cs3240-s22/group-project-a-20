@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure-qq#lx_zeo9w-=z#webh+ei^517&q^fgo-f$h(@lqwxoj+&xifw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+SESSION_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = ['127.0.0.1', 'cs3240-a-20-wom.herokuapp.com']
 
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -50,6 +53,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     #AWS
     'storages',
+    #Comments
+    'django_comments_xtd',
+    'django_comments',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 ROOT_URLCONF = 'WoM.urls'
 
@@ -80,8 +89,12 @@ TEMPLATES = [
     },
 ]
 
+SITE_ID = 1
+
 WSGI_APPLICATION = 'WoM.wsgi.application'
 
+COMMENTS_APP = 'django_comments_xtd'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -213,10 +226,14 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_CONFIRM_EMAIL = False
+
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
 
 if 'HEROKU' in os.environ:
     import django_heroku
+    DEBUG = False
     django_heroku.settings(locals())

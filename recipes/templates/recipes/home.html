@@ -15,6 +15,7 @@
             <h4>Where you can get the latest bites.</h4>
             <br><br><br>
             <h4>Check out recipes others have posted, or log in to post some of your own!</h4>
+            <h4>Have fun <em>forking</em> them and putting your own fresh spin on them, too!</h4>
             <br>
             <a class="nav-link" href="{% url 'recipes:recipelist' %}"><button type="button" class="btn btn-primary">See the List of Recipes</button></a>
 
@@ -29,7 +30,7 @@
 
 
 <div class="container top-recipes">
-    <h2>Top Recipes of the Week</h2>
+    <h2>Top Recipes</h2>
     <div class="row top-recipes-cards">
 
         {% for item in recipe_list %}
@@ -42,6 +43,7 @@
                     <h5 class="card-title">{{ item.recipe_title }}</h5>
                     <p class="card-text">
                         <a href="{% url 'recipes:recipe' item.pk %}">Get this recipe!</a>
+                        <p>Favorited {{ item.num_favs }} time{{ item.num_favs | pluralize:",s" }}</p>
                     </p>
                 </div>
             </div>

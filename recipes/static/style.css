@@ -8,6 +8,10 @@ h5 {
     font-size: 1rem;
 }
 
+.recipe-link {
+    text-decoration: none;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -97,6 +101,14 @@ ul {
 
 
 /*RECIPE FORM ELEMENTS */
+.favorites-form {
+    padding: 2% 4% 5% 4%;
+}
+
+.top-fork-button {
+    padding: 1%;
+}
+
 .recipe-img {
     max-width: 100%;
     margin: 2% 4% 0% 4%;
@@ -112,6 +124,56 @@ ul {
 
 .list-of-forks {
     padding: 2% 4% 0% 4%;
+}
+
+.list-of-forks ul {
+     list-style-type: square;
+     list-style-position: inside;
+     margin: 0;
+     padding: 0;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+}
+
+.far {
+
+}
+
+.fas {
+	color: red;
+}
+
+.heart {
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.comments-hr {
+    border-top: 7px dotted gray;
+    opacity: 100%;
+    background-color: #FFF;
+    width: 10%;
+    margin: 30px auto 0 auto;
+}
+
+.comments {
+    margin-top: 30px;
+    border-radius: 15px;
+    padding: 1% 2% 0.5% 2%;
+    margin-bottom: 20px;
+}
+
+.comments-posted {
+    text-align: center;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1%;
+}
+
+.comment-submission .btn-secondary {
+    display: none;
 }
 
 /*RECIPE SUBMISSION FORM PAGE ELEMENTS */
@@ -173,11 +235,15 @@ ul {
     color: black;
     font-weight: 400;
 }
-.container__text .container__text__star span {
-    font-size: 0.8rem;
-    color: #ffa800;
-    margin: -5px 0 20px;
+.container__text__heart {
+    font-size: 1rem;
+    color: black;
 }
+.container__text__heart .heart {
+    color: red;
+    size: 1rem;
+}
+
 .container__text p {
     font-size: 0.9rem;
 }
@@ -219,5 +285,14 @@ ul {
     .recipe-list-container {
         margin: 40px 0px 40px 0px;
     }
+
+    .list-of-forks ul {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+
+    h1{
+        font-size: 2.5rem;}
 
 }

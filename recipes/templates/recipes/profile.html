@@ -19,7 +19,71 @@
         <p> Bio: {{profile.bio}}</p>
         <p> Created: {{profile.created_at}}</p>
         <p> Last edited: {{profile.updated_at}} </p>
+        <h3>Authored Recipes:</h3> 
+        <ul>
+            {% if authored %}
+            {% for item in authored %}
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="{% url 'recipes:recipe' item.pk %}">
+                        {% if item.img %}
+                        <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
+                        {% endif %}
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.recipe_title }}</h5>
+                        <p class="card-text">
+                            <a href="{% url 'recipes:recipe' item.pk %}">View this Recipe</a>
+                            <form action="{% url 'recipes:favorite' item.id user.id %}" method='POST'>
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                {% if item in favorites %}
+                                <input type="submit" value="Remove Favorite">
+                                {% else %}
+                                <input type="submit" value="Add Favorite" />
+                                {% endif %}
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No authored recipes yet!</p>
+            {% endif %}
+        </ul>
+        <h3>Favorited Recipes:</h3>
+        <ul>
+            {% if favorites %}
+            {% for item in favorites %}
+            <div class="col-md-4">
+                <div class="card">
+                    <a href="{% url 'recipes:recipe' item.pk %}">
+                        {% if item.img %}
+                        <img src="{% static ''%}{{ item.img }}" class="card-img-top" alt="...">
+                        {% endif %}
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.recipe_title }}</h5>
+                        <p class="card-text">
+                            <a href="{% url 'recipes:recipe' item.pk %}">View this Recipe</a> 
+                            <form action="{% url 'recipes:favorite' item.id user.id %}" method='POST'>
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <input type="submit" value="Remove Favorite">
+                            </form>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No favorited recipes yet!</p>
+            {% endif %}
+        </ul>   
     </div>
+
+    
 
     <form action="{% url 'recipes:editprofile' profile.id %}">
         <input type="submit" value="Edit Profile" />
