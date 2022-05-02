@@ -14,10 +14,6 @@ def createRecipe(title):
     # Create some recipes
     return Recipe.objects.create(recipe_title=title)
 
-class DummyTests(TestCase):
-    def test_1(self):
-        self.assertIs(True, True)
-
 class ModelsTests(TestCase):
     def setUp(self):
         # Create some users
@@ -57,26 +53,26 @@ class ProfileTests(TestCase):
     def test_own_profile(self):
         user = CreateUser("me", "me@gmail.com", "gabagoo")
         prof = CreateProfile(user, "male", datetime.date.today(), "it me!", 0)
-        response = self.client.get(reverse('recipes:editprofile', args=(prof.id,)))
+        response = self.client.get(reverse('recipes:editprofile', args=(prof.id,)), follow=True)
         self.assertNotEqual(response.status_code, 404)
 
 class ViewsTests(TestCase):
     def test_recipe_list_empty_view(self):
-        response = self.client.get(reverse('recipes:recipelist'))
+        response = self.client.get(reverse('recipes:recipelist'), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Waiting for recipes.')
 
     def test_multiple_recipe_list_view(self):
         porkchop = createRecipe("pork chops")
         muffins = createRecipe("muffins")
-        response = self.client.get(reverse('recipes:recipelist'))
+        response = self.client.get(reverse('recipes:recipelist'), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, porkchop.recipe_title)
         self.assertContains(response, muffins)
 
     def test_recipe_view(self):
         createRecipe("cookies")
-        response = self.client.get(reverse('recipes:recipe', args=[1]))
+        response = self.client.get(reverse('recipes:recipe', args=[1]), follow=True)
         self.assertEqual(response.status_code, 200)
 
 
