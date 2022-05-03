@@ -44,17 +44,29 @@ def CreateUser(name, email, field3):
     return User.objects.create_user(name, email, field3)
 
 class ProfileTests(TestCase):
-    def test_update(self):
-        user = CreateUser("me", "me@gmail.com", "gabagoo")
-        prof = CreateProfile(user, "male", datetime.date.today(), "it me!", -5)
-        prof.bio = "no its me!"
-        self.assertEqual(prof.updated_at, timezone.now())
 
     def test_own_profile(self):
         user = CreateUser("me", "me@gmail.com", "gabagoo")
         prof = CreateProfile(user, "male", datetime.date.today(), "it me!", 0)
         response = self.client.get(reverse('recipes:editprofile', args=(prof.id,)), follow=True)
-        self.assertNotEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 200)
+
+    
+    def test_no_favorites(self):
+        user = CreateUser("me", "me@gmail.com", "gabagoo")
+        prof = CreateProfile(user, "male", datetime.date.today(), "it me!", 0)
+        response = self.client.get(reverse('recipes:profile', args =(prof.id,)), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No favorited recipes yet!")
+        muffins = createRecipe("muffins")
+    
+    def test_authored(self):
+        user = CreateUser("me", "me@gmail.com", "gabagoo")
+        prof = CreateProfile(user, "male", datetime.date.today(), "it me!", 0)
+        response = self.client.get(reverse('recipes:profile', args =(prof.id,)), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "No authored recipes yet!")
+        
 
 class ViewsTests(TestCase):
     def test_recipe_list_empty_view(self):
