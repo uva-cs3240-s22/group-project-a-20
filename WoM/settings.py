@@ -89,7 +89,7 @@ TEMPLATES = [
     },
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 WSGI_APPLICATION = 'WoM.wsgi.application'
 
@@ -229,9 +229,9 @@ SOCIALACCOUNT_PROVIDERS = {
 COMMENTS_APP = 'django_comments_xtd'
 COMMENTS_XTD_CONFIRM_EMAIL = False
 
-if 'DATABASE_URL' in os.environ:
+'''if 'DATABASE_URL' in os.environ:
     import dj_database_url
-    DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}'''
 
 if 'HEROKU' in os.environ:
     import django_heroku
