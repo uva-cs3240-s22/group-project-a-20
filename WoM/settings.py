@@ -201,7 +201,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Not positive what this does yet
-SITE_ID = 1
+SITE_ID = 2
 
 # We might do something else, but we can specify the logged in redirect url here
 LOGIN_REDIRECT_URL = '/'
